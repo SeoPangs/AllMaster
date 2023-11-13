@@ -23,7 +23,7 @@ void APlayerCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
     PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayerCharacter::Sprint);
     PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayerCharacter::StopSprinting);
     PlayerInputComponent->BindAction("ToggleWalking", IE_Pressed, this, &APlayerCharacter::ToggleWalking);
-
+    
 }
 
 void APlayerCharacter::Sprint()
@@ -64,7 +64,8 @@ void APlayerCharacter::ToggleWalking()
 
 void APlayerCharacter::Act()
 {
-    
+    AnimPlay(0);
+
 }
 
 AInteractiveObject* APlayerCharacter::DetectObject()
@@ -73,3 +74,9 @@ AInteractiveObject* APlayerCharacter::DetectObject()
     return NULL;
 }
 
+
+void APlayerCharacter::AnimPlay_Implementation(int number)
+{
+    // Default implementation
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("None AnimPlay")));
+}

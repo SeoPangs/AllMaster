@@ -11,7 +11,7 @@ class AMob;
 /// <summary>
 /// Skill Class
 /// </summary>
-UCLASS()
+UCLASS(Blueprintable)
 class ALLMASTER_API USkill : public UObject
 {
 	GENERATED_BODY()

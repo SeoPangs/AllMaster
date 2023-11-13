@@ -33,6 +33,12 @@ protected:
     void Sprint();
     void StopSprinting();
     void ToggleWalking();
-    void Act() override;
+
+    
+    virtual void Act() override;
     AInteractiveObject* DetectObject(); //Find Near Interactive Object;
+
+    UFUNCTION(BlueprintNativeEvent)
+    void AnimPlay(int number);
+    virtual void AnimPlay_Implementation(int number);
 };

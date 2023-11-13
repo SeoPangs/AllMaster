@@ -109,5 +109,6 @@ protected:
     virtual void UseSkillFourth();
 
 public:
-    
+    UFUNCTION(BlueprintCallable)
+    void GetSkill(TSubclassOf<USkill> gottenSkill);
 };

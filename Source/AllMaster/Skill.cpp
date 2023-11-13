@@ -22,5 +22,7 @@ bool USkill::Perform()
 
 USkill::USkill()
 {
-	
+    Caster = NULL;
+    SkillIcon = NULL;
+
 }

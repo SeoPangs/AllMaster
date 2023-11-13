@@ -91,6 +91,7 @@ void AMob::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAxis("LookUpRate", this, &AMob::LookUpAtRate);
     PlayerInputComponent->BindAxis("Zoom", this, &AMob::Zoom);
 
+    PlayerInputComponent->BindAction("Act", IE_Pressed, this, &AMob::Act);
 
     PlayerInputComponent->BindAction("SkillFirst", IE_Pressed, this, &AMob::UseSkillFirst);
     PlayerInputComponent->BindAction("SkillSecond", IE_Pressed, this, &AMob::UseSkillSecond);
@@ -189,4 +190,9 @@ void AMob::UseSkillThird()
 void AMob::UseSkillFourth()
 {
     UseSkill(3);
+}
+
+void AMob::GetSkill(TSubclassOf<USkill> gottenSkill)
+{
+    SkillList.Add(gottenSkill);
 }
