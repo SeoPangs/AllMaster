@@ -6,7 +6,7 @@
 #include "EngineUtils.h"
 
 //스킬 버튼을 눌렀을 때
-bool UTargetingSkill::Perform()
+bool UTargetingSkill::Perform_Implementation()
 {
     //State가 Idle이면 스킬 시전
     //State가 Targeting이면 

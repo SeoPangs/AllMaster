@@ -20,7 +20,7 @@ protected:
     UPROPERTY(VisibleAnywhere, Category = Mob)
     TSubclassOf<USkill> AppliedSkill;
 
-    UPROPERTY(EditAnywhere, Category = Mob)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mob)
     TArray<TSubclassOf<USkill>> SkillList;
     UPROPERTY(EditAnywhere, Category = Mob)
     EActionState State;
@@ -100,8 +100,9 @@ protected:
 
 protected:
     //마우스 좌클릭 매핑;
-    UFUNCTION(BlueprintCallable)
-    virtual void Act();
+    UFUNCTION(BlueprintNativeEvent)
+    void Act();
+    virtual void Act_Implementation();
     //입력을 받아서 스킬 매핑;
     virtual void UseSkillFirst();
     virtual void UseSkillSecond();
@@ -110,5 +111,7 @@ protected:
 
 public:
     UFUNCTION(BlueprintCallable)
-    void GetSkill(TSubclassOf<USkill> gottenSkill);
+    
+    //몬스터가 스킬을 얻도록 하는 함수
+    TSubclassOf<USkill> GetSkill(TSubclassOf<USkill> gottenSkill);
 };

@@ -4,7 +4,7 @@
 #include "Skill.h"
 #include "Mob.h"
 
-bool USkill::Perform()
+bool USkill::Perform_Implementation()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Execute USkill::Perform")));
 	if (Caster)

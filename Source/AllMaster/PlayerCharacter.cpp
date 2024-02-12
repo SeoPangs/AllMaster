@@ -8,11 +8,22 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Skill.h"
 #include "InteractiveObject.h"
+
 
 
 APlayerCharacter::APlayerCharacter()
 {
+
+    Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon"));
+    if (WeaponSocket.IsValid())
+    {
+        Weapon->SetupAttachment(GetMesh(), WeaponSocket);
+        Weapon->SetRelativeLocation(FVector(-10, 2, 2));
+        Weapon->SetRelativeRotation(FRotator(0.f, 0.0f, -90.0f));
+    }
+   
     bIsSprinting = false;
     bIsWalking = false;
 }
@@ -62,7 +73,7 @@ void APlayerCharacter::ToggleWalking()
     }
 }
 
-void APlayerCharacter::Act()
+void APlayerCharacter::Act_Implementation()
 {
     AnimPlay(0);
 
@@ -79,4 +90,15 @@ void APlayerCharacter::AnimPlay_Implementation(int number)
 {
     // Default implementation
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("None AnimPlay")));
+}
+
+void APlayerCharacter::UseSkill(int index)
+{
+    //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%d Hotkey Pressed"), index + 1));
+    if (HotkeySkill.IsValidIndex(index))
+    {
+        HotkeySkill[index].GetDefaultObject()->Perform();
+        AppliedSkill = HotkeySkill[index];
+    }
+    else GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%d Hotkey Not Used Pressed"), index + 1));
 }

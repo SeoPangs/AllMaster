@@ -10,6 +10,9 @@
  * 
  */
 
+
+enum class EWeaponStyle : uint8 { Sword UMETA(DisplayName = "Sword"), Wand UMETA(DisplayName = "Wand"), Bow UMETA(DisplayName = "Bow") };
+
 class AInteractiveObject;
 
 UCLASS()
@@ -23,19 +26,34 @@ private:
     //Bool to control if we are walking. By toggle with Walking and Runnig
     bool bIsWalking;
 
+    FName WeaponSocket = "hand_rSocket";
+
+    UPROPERTY(EditAnywhere)
+    class UStaticMeshComponent* Weapon;
+
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Skill)
+    TArray<TSubclassOf<USkill>> HotkeySkill;
+
+
 protected:
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
     APlayerCharacter();
 
+private:
+
+
 protected:
     void Sprint();
     void StopSprinting();
     void ToggleWalking();
 
+    virtual void UseSkill(int index) override;
     
-    virtual void Act() override;
+    virtual void Act_Implementation() override;
+
     AInteractiveObject* DetectObject(); //Find Near Interactive Object;
 
     UFUNCTION(BlueprintNativeEvent)

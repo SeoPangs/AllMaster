@@ -2,13 +2,20 @@
 
 
 #include "InteractiveObject.h"
+#include "Components/BoxComponent.h"
+#include "Mob.h"
 
 // Sets default values
 AInteractiveObject::AInteractiveObject()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));;
+    RootComponent = mesh;
 
+    box = CreateDefaultSubobject<UBoxComponent>(TEXT("Box"));;
+    box->SetupAttachment(RootComponent);
+   
+    box->OnComponentBeginOverlap.AddDynamic(this, &AInteractiveObject::OnOverlapBegin);
+    
 }
 
 // Called when the game starts or when spawned
@@ -25,9 +32,29 @@ void AInteractiveObject::Tick(float DeltaTime)
 
 }
 
-void AInteractiveObject::Interact()
+void AInteractiveObject::Interact_Implementation(AMob* Interactor)
 {
-    UE_LOG(LogTemp, Log, TEXT("IINNTTEERRAACCTT"));
+    if (Interactor)
+    {
+        UE_LOG(LogTemp, Log, TEXT("Yes Interactor"));
+    }
+    else 
+    {
+        UE_LOG(LogTemp, Log, TEXT("Not Implement IINNTTEERRAACCTT"));
+    }
+    
 }
 
 
+void AInteractiveObject::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor,
+    class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+    bool bFromSweep, const FHitResult& SweepResult)
+{
+    UE_LOG(LogTemp, Log, TEXT("Interactive Object Overlap Begining"))
+    AMob* interactor = Cast<AMob>(OtherActor);
+    if (interactor)
+    {
+        Interact(interactor);
+    }
+    
+}

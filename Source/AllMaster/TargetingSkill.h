@@ -37,5 +37,5 @@ protected:
     virtual void Affect();
 
 public:
-    virtual bool Perform() override;
+    virtual bool Perform_Implementation() override;
 };

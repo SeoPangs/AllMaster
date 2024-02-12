@@ -53,14 +53,7 @@ void AMob::BeginPlay()
 {
     Super::BeginPlay();
 
-    SkillList.Emplace(USkill::StaticClass());
-    SkillList.Emplace(UTargetingSkill::StaticClass());
-
-
     AppliedSkill = NULL;
-    //MUST
-    SkillList[0].GetDefaultObject()->Caster = this;
-    SkillList[1].GetDefaultObject()->Caster = this;
 	
 }
 
@@ -167,10 +160,10 @@ void AMob::UseSkill(int index)
     else GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Skill %d Not Perform"), index + 1));
 }
 
-void AMob::Act() 
+void AMob::Act_Implementation() 
 {
     //MUST
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Mob Act, Set Act Plz")));
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Mob Act_Implementation, Set Act Plz ")));
 }
 
 void AMob::UseSkillFirst()
@@ -192,7 +185,10 @@ void AMob::UseSkillFourth()
     UseSkill(3);
 }
 
-void AMob::GetSkill(TSubclassOf<USkill> gottenSkill)
+TSubclassOf<USkill> AMob::GetSkill(TSubclassOf<USkill> gottenSkill)
 {
-    SkillList.Add(gottenSkill);
+    int32 SkillIndex;
+    SkillIndex = SkillList.Add(gottenSkill);
+    SkillList[SkillIndex].GetDefaultObject()->Caster = this;
+    return SkillList[SkillIndex];
 }

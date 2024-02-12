@@ -18,19 +18,29 @@ class ALLMASTER_API USkill : public UObject
 		
 protected:
 	FName SkillType;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName SkillName;
 	
 public:
 	USkill();
 
-	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 		AMob* Caster;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UTexture2D* SkillIcon;
 
-	UFUNCTION()
-		virtual bool Perform();
-		
+public:
+
+    UFUNCTION(BlueprintCallable)
+    FName GetName() { return SkillName; }
+
+	UFUNCTION(BlueprintNativeEvent)
+	bool Perform();
+
+
+    virtual bool Perform_Implementation();
+	
+    
 };
