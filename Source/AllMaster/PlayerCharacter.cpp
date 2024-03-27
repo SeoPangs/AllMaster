@@ -8,8 +8,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "Skill.h"
-#include "InteractiveObject.h"
+#include "Skill/Skill.h"
+#include "Object/InteractiveObject.h"
 
 
 

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Mob.h"
+#include "Mob/Mob.h"
 #include "PlayerCharacter.generated.h"
 
 /**

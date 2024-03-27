@@ -2,7 +2,7 @@
 
 
 #include "TargetingSkill.h"
-#include "Mob.h"
+#include "../Mob/Mob.h"
 #include "EngineUtils.h"
 
 //스킬 버튼을 눌렀을 때

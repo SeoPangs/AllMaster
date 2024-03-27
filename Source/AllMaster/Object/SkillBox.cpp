@@ -2,7 +2,7 @@
 
 
 #include "SkillBox.h"
-#include "Mob.h"
+#include "../Mob/Mob.h"
 
 void ASkillBox::Interact_Implementation(AMob* Interactor)
 {

@@ -2,8 +2,8 @@
 
 
 #include "Mob.h"
-#include "Skill.h"
-#include "TargetingSkill.h"
+#include "../Skill/Skill.h"
+#include "../Skill/TargetingSkill.h"
 
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"

@@ -3,7 +3,7 @@
 
 #include "InteractiveObject.h"
 #include "Components/BoxComponent.h"
-#include "Mob.h"
+#include "../Mob/Mob.h"
 
 // Sets default values
 AInteractiveObject::AInteractiveObject()
